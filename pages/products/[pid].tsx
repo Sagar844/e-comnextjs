@@ -95,9 +95,10 @@ const pid: NextPage<pidprops> = ({ ProdutsDetail }) => {
 export const getServerSideProps = async (context: { params: any }) => {
     console.log("getseversideprops")
     const { params } = context;
+    console.log(params)
     const pid = params.pid;
     console.log(pid)
-    const response = await getProdutsdetail(2);
+    const response = await getProdutsdetail(pid);
 
     return {
         props: {

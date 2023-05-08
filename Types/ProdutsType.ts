@@ -4,7 +4,7 @@ export interface Pokedex {
 }
 
 export interface Datum {
-    map(arg0: (p: any) => void): import("react").ReactNode;
+    map(arg0: (p: Datum) => JSX.Element): import("react").ReactNode;
     id:                  number;
     title:               string;
     description:         string;

@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 6rem;
+    min-height: 100vh;
+  }
+  
+  .description {
+    display: inherit;
+    max-width: var(--max-width);
+    width: 100%;
+    z-index: 2;
+  
+  }
+  
+  

@@ -4,14 +4,34 @@ import { getProduts } from "@/api/apis";
 import { Datum } from "@/Types/ProdutsType";
 import styles from "@/styles/Home.module.css";
 import Head from "next/head";
+import Input from "@/InputHoc/Input";
+import { FieldValues, useForm } from "react-hook-form";
+import { DetailedHTMLProps, FormHTMLAttributes } from "react";
 
 
 type HomeProps = {
-  Produts: Datum
+  Produts: Datum,
+  form: DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
 }
 
 const Home: NextPage<HomeProps> = ({ Produts }) => {
   console.log(Produts)
+
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+    }
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: '',
+
+    }
+  });
+
   return (
     <>
       <Head>
@@ -20,6 +40,11 @@ const Home: NextPage<HomeProps> = ({ Produts }) => {
       <main className={styles.main}>
         <div className={styles.description}>
           <ProdutsPage Produts={Produts} />
+
+          <Input label="name" id="name" register={register} errors={errors} required />
+
+
+
         </div>
       </main>
     </>

@@ -14,11 +14,7 @@ type HomeProps = {
 const ProdutsPage: NextPage<HomeProps> = ({ Produts }) => {
 
 
-    const router = useRouter();
-
-    if (router.isFallback) {
-      <h1>Data is loading</h1>;
-    }
+    if (!Produts) return <div>Loading...</div>;
     return (
         <div className='grid grid-cols-2 lg:grid-cols-5 items-center gap-4'>
             {Produts.map((p) => {

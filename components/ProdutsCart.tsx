@@ -14,7 +14,7 @@ const ProdutsCart: NextPage<produtscartprops> = ({ p }) => {
     return (
         <>
 
-            <div className='items-center group rounded-lg border border-transparent px-5 py-4 transition-colors border-green-400 hover:text-white bg-green-400'>
+            <div className='items-center group rounded-lg border border-transparent mx-w-sm transition-colors border-green-400 hover:text-white bg-green-400'>
                 <Link href={"/products/" + p.id}>
                     <Image className='inline-block  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500' placeholder='blur' blurDataURL={`data:image/svg+xml;
           base64,${toBase64(

@@ -6,9 +6,9 @@ import { NextPage } from "next";
 import { getProdutsdetail } from "@/api/apis";
 import { Datum } from "@/Types/ProdutsType";
 import Button from "@/components/Button";
-import { useCallback } from "react";
-import useRazorpay from "react-razorpay";
+
 import styles from "@/styles/Home.module.css";
+import RozerpaymentGatbay from "@/components/RozerpaymentGatbay";
 type pidprops = {
     ProdutsDetail: Datum
 };
@@ -16,42 +16,6 @@ type pidprops = {
 const pid: NextPage<pidprops> = ({ ProdutsDetail }) => {
 
 
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const Razorpay = useRazorpay();
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const handlePayment = useCallback(() => {
-
-        console.log("rozerpay")
-        const options: any = {
-            key: "rzp_test_OjT7zSlYQqcy9M",
-            Key_Secret:"rzp_test_OjT7zSlYQqcy9M,SDtf8yWweKhC8BGL8FqzVfed",
-            amount:ProdutsDetail.price,
-            currency: "INR",
-            name: ProdutsDetail.title,
-            description: "Test Transaction",
-            image: ProdutsDetail.thumbnail,
-            // order_id: order.id,
-            handler: (res: any) => {
-                console.log(res);
-            },
-            prefill: {
-                name: "Sagar",
-                email: "sagarkumar84450@gmail.com",
-                contact: "8630819248",
-            },
-            notes: {
-                address: "Razorpay Corporate Office",
-            },
-            theme: {
-                color: " #2874f0",
-            },
-        };
-
-        const rzpay = new Razorpay(options);
-        rzpay.open();
-    }, [ProdutsDetail.price, ProdutsDetail.thumbnail, ProdutsDetail.title, Razorpay]);
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -66,13 +30,13 @@ const pid: NextPage<pidprops> = ({ ProdutsDetail }) => {
                 <title>{ProdutsDetail.title}</title>
 
             </Head>
-            <div className={styles.main}> 
-                <div className="flex justify-around items-center">
+            <div className={styles.main}>
+                <div className="flex justify-around items-center space-x-10">
                     <div className="">
                         <Image
                             className="imagesmovies"
                             height={260}
-                            width={160}
+                            width={300}
                             alt="ss"
                             src={ProdutsDetail.thumbnail}
                             placeholder="blur"
@@ -80,11 +44,17 @@ const pid: NextPage<pidprops> = ({ ProdutsDetail }) => {
                                 shimmer(700, 475)
                             )}`}
                         ></Image>
-                        <Button onClick={handlePayment} className="bg-orange-500 cu"> Buy Now</Button>
+                        <div className="flex space-x-8 mt-5">
+                            <Button className="bg-[#ff9f00] " >ADD TO CART</Button>
+                           <RozerpaymentGatbay ProdutDeatail={ProdutsDetail}/>
+                        </div>
+
 
                     </div>
-                    <div>
-                        <h1 style={{ color: "red" }}> {ProdutsDetail.title} </h1>
+                    <div className="space-y-4">
+                        <h1 className="font-bold text-2xl"> {ProdutsDetail.title} </h1>
+                        <div className="font-bold text-2xl"> ₹{ProdutsDetail.price}</div>
+                        <p>{ProdutsDetail.description}</p>
                     </div>
                 </div>
             </div>
